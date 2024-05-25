@@ -7,11 +7,9 @@
 @section('content')
 
 <div class="todo__alert">
-    @if(session('message'))
     <div class="todo__alert--success">
-        {{session('message')}}
+        Todoを作成しました
     </div>
-    @endif
 </div>
 
 <div class="Todo__content">
@@ -32,8 +30,9 @@
             @foreach ($todos as $todo)
             <tr class="todo-table__row">
                 <td class="todo-table__item">
-                 <from class="update-form" adtion="/todos" method="post">
+                 <from class="update-form">
                     <div  class="update-form__item">
+                        <input class="update-form__item-input" type="text" name="content" value="test">
                         <p class="update-form__item-input">{{ $todo['content'] }}</p>
                     </div>
                     <div class="update-form__button">
@@ -42,7 +41,7 @@
                  </from>
                 </td>
                 <td class="todo-table__item">
-                    <from class="delete-form" action="/todos" method="post">
+                    <from class="delete-form">
                         <div class="delete-form__button">
                             <button class="delete-form__button-submit" type="submit">削除</button>
                         </div>
