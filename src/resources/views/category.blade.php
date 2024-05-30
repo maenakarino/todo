@@ -44,7 +44,7 @@
                         @method('PATCH')
                         @csrf
                         <div class="update-form__item">
-                            <input class="update-form__item-input" type="text" value="{{ $category['name'] }}">
+                            <input class="update-form__item-input" type="text" name="name" value="{{ $category['name'] }}">
                             <input type="hidden" name="id" value="{{ $category['id'] }}">
                         </div>
                         <div class="update-form__button">
@@ -53,8 +53,11 @@
                     </form>
                 </td>
                 <td class="category-table__item">
-                    <foem class="delete-form">
+                    <foem class="delete-form" action="/categories/delete" method="post">
+                        @method('DELETE')
+                        @csrf
                         <div class="delete-form__button">
+                            <input type="hidden" name="id" value="{{ $category['id'] }}">
                             <button class="delete-form__button-submit" type="submit">削除</button>
                         </div>
                     </form>

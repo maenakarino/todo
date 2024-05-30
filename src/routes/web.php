@@ -11,4 +11,5 @@ Route::delete('/todos/{todo?id}', [Todocontroller::class, 'destroy']);
 
 Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('/categories', [CategoryController::class, 'store']);
-Route::patch('/categories/update', [CategoryController::class, 'update']);
+Route::patch('/categories/{category_id}', [CategoryController::class, 'update']);
+Route::delete('/categories/{category_id}', [CategoryController::class, 'destroy']);
