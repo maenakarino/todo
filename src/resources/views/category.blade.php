@@ -23,9 +23,10 @@
 </div>
 
 <div class="category__content">
-    <form class="create-form">
+    <form class="create-form" action="/categories" method="post">
+        @csrf
         <div class="create-form__item">
-            <input class="create-form__item-input" type="text">
+            <input class="create-form__item-input" type="text" name="name" value="{{ old('name') }}">
         </div>
         <div class="create-form__button">
             <button class="create-form__button-submit" type="submit">作成</button>
@@ -39,9 +40,12 @@
             @foreach ($categories as $category)
             <tr class="category-table__row">
                 <td class="category-table__item">
-                    <form class="update-form">
+                    <form class="update-form" action="/categories/update" method="post">
+                        @method('PATCH')
+                        @csrf
                         <div class="update-form__item">
-                            <input class="update-form__item-input" type="text">
+                            <input class="update-form__item-input" type="text" value="{{ $category['name'] }}">
+                            <input type="hidden" name="id" value="{{ $category['id'] }}">
                         </div>
                         <div class="update-form__button">
                             <button class="update-form__button-submit" type="submit">更新</button>

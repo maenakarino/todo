@@ -6,6 +6,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+
 class CategoryController extends Controller
 {
     public function index()
@@ -13,5 +14,21 @@ class CategoryController extends Controller
         $categories = Category::all();
 
         return view('category', compact('categories'));
+    }
+
+    public function store(CategoryRequest $request)
+    {
+        $category = $request->only(['name']);
+        Category::create($category);
+
+        return redirect('/categories')->with('massage', 'カテゴリーを作成しました');
+    }
+
+    public function update(CategoryRequest $request)
+    {
+        $category = $request->only(['name']);
+        Category::find($request->id)->update($category);
+
+        return redirect('/categories')->with('message', 'カテゴリーを更新しました');
     }
 }
