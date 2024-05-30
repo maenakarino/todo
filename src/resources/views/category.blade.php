@@ -53,7 +53,7 @@
                     </form>
                 </td>
                 <td class="category-table__item">
-                    <foem class="delete-form" action="/categories/delete" method="post">
+                    <form class="delete-form" action="/categories/delete" method="post">
                         @method('DELETE')
                         @csrf
                         <div class="delete-form__button">

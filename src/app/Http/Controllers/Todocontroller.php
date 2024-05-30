@@ -19,7 +19,7 @@ class Todocontroller extends Controller
 
     public function store(TodoRequest $request)
     {
-        $todo = $request->only(['content']);
+        $todo = $request->only(['category_id', 'content']);
         Todo::create($todo);
 
         return redirect('/')->with('message', 'Todoを作成しました');
