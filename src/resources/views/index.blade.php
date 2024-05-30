@@ -30,7 +30,7 @@
     <form class="create-form" action="/todos" method="post">
         @csrf
     <div class="create-form__item">
-        <input class="create-form__item-input" type="text" name="content" value="{{ old('content') }}"/>
+        <input class="create-form__item-input" type="text" name="content" value="{{ old('content') }}">
         <select class="create-form__item-select" name="category_id">
             @foreach ($categories as $category)
             <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
@@ -46,6 +46,7 @@
     </div>
     <form class="search-form">
         <div class="search-form__item">
+            @csrf
             <input class="search-form__item-input" type="text" />
             <select class="search-form__item-select">
                 <option value="">カテゴリー</option>

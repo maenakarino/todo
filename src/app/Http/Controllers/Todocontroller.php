@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TodoRequest;
-use Illuminate\Http\Request;
-use App\Models\Todo;
 use App\Models\Category;
+use App\Models\Todo;
+use Illuminate\Http\Request;
+
+
 
 class Todocontroller extends Controller
 {
@@ -36,7 +38,7 @@ class Todocontroller extends Controller
 
     public function destroy(Request $request)
     {
-        Todo::find($request->id)->delete();
+        Todo::find($request->todo_id)->delete();
 
         return redirect('/')->with('message', 'Todoを削除しました');
     }
