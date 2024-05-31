@@ -34,6 +34,7 @@
         <select class="create-form__item-select" name="category_id">
             @foreach ($categories as $category)
             <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+            <option value="">カテゴリー</option>
             @endforeach
 
         </select>
@@ -45,12 +46,15 @@
     <div class="section__title">
         <h2>Todo検索</h2>
     </div>
-    <form class="search-form">
+    <form class="search-form" action="/todos/search" method="get">
+        @csrf
         <div class="search-form__item">
-            @csrf
-            <input class="search-form__item-input" type="text" />
-            <select class="search-form__item-select">
+            <input class="search-form__item-input" type="text" name="keyword" value="{{ old('keyword') }}">
+            <select class="search-form__item-select" name="category_id">
                 <option value="">カテゴリー</option>
+                @foreach ($categories as $category)
+                <option value="{{ $category['id'] }}">{{ $category['name'] }}</option>
+                @endforeach
             </select>
         </div>
         <div class="search-form__button">
@@ -68,7 +72,7 @@
             @foreach ($todos as $todo)
             <tr class="todo-table__row">
                 <td class="todo-table__item">
-                 <form class="update-form" action="/todos/update" method="POST">
+                 <form class="update-form" action="/todos/{todo_id}" method="post">
                     @method('PATCH')
                     @csrf
                     <div  class="update-form__item">
@@ -84,8 +88,7 @@
                  </form>
                 </td>
                 <td class="todo-table__item">
-                    <form class="delete-form" action="/todos/delete" method="POST"
-                    >
+                    <form class="delete-form" action="/todos/{todo_id}" method="post">
                     @method('DELETE')
                     @csrf
                         <div class="delete-form__button">

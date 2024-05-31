@@ -31,7 +31,7 @@ class CategoryController extends Controller
     return redirect('/categories')->with('message', 'カテゴリを更新しました');
   }
 
-  public function destroy(Request $request)
+  public function destry(Request $request)
   {
     Category::find($request->category_id)->delete();
 
